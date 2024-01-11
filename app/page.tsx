@@ -1,10 +1,9 @@
-import { ModeToggleButton } from "@/components/common/mode-toggle-button";
+import { Header } from "@/components/common/header";
 
 export default function HomePage() {
   return (
     <div>
-      HomePage
-      <ModeToggleButton />
+      <Header />
     </div>
   );
 }
