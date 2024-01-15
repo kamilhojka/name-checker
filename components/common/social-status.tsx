@@ -1,3 +1,4 @@
+import { APIResult } from "@/app/api/route";
 import { Badge } from "@/components/ui/badge";
 
 export async function SocialStatus({
@@ -5,7 +6,7 @@ export async function SocialStatus({
   action,
 }: {
   username: string;
-  action?: (args: { username: string }) => Promise<{ available: boolean }>;
+  action?: (args: { username: string }) => Promise<APIResult>;
 }) {
   if (!username) {
     return null;

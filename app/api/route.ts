@@ -1,41 +1,61 @@
-import axios from "axios";
-import { setTimeout } from "timers/promises";
+import axios, { AxiosResponse, AxiosError } from "axios";
+
+export type APIResult = {
+  status: "ok" | "error";
+  available: boolean;
+  message: string;
+};
 
 export const InstagramAPI = {
-  fetchData: async ({ username }: { username: string }) => {
-    await setTimeout(1000);
+  fetchData: async ({ username }: { username: string }): Promise<APIResult> => {
     try {
-      const myHeaders = {
-        "X-Csrftoken": "missing",
+      const headers = {
+        "X-Csrftoken": "rand",
         "Content-Type": "application/x-www-form-urlencoded",
       };
 
       const urlencoded = new URLSearchParams();
       urlencoded.append("username", username);
 
-      const secondResponse = await axios.post(
+      const response: AxiosResponse = await axios.post(
         "https://www.instagram.com/api/v1/web/accounts/web_create_ajax/attempt/",
         urlencoded.toString(),
         {
-          headers: myHeaders,
+          headers: headers,
         }
       );
 
-      if (secondResponse.status !== 200) {
-        throw new Error("Instagram is down2");
+      if (response.data.status !== "ok") {
+        throw new Error(`Instagram API error! Status: ${response.status}`);
       }
 
-      const data = secondResponse.data;
-
-      if (data?.status === "ok") {
-        if (data?.errors.hasOwnProperty("username")) {
-          return { available: false };
-        }
-        return { available: true };
+      if (response.data.errors.hasOwnProperty("username")) {
+        return Promise.resolve({
+          status: "ok",
+          available: false,
+          message: response.data.errors.username || "",
+        });
       }
-      return { available: false };
+
+      return Promise.resolve({
+        status: "ok",
+        available: true,
+        message: "",
+      });
     } catch (error) {
-      return { available: false };
+      if (error instanceof AxiosError) {
+        return Promise.resolve({
+          status: "error",
+          available: false,
+          message: error.message,
+        });
+      }
+
+      return Promise.resolve({
+        status: "error",
+        available: false,
+        message: "Generic message error",
+      });
     }
   },
 };
