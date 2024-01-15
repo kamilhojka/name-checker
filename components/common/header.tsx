@@ -1,5 +1,6 @@
-import { Logo } from "./logo";
-import { ModeToggleButton } from "./mode-toggle-button";
+import { GithubButton } from "@/components/common/github-button";
+import { Logo } from "@/components/common/logo";
+import { ModeToggleButton } from "@/components/common/mode-toggle-button";
 
 export function Header() {
   return (
@@ -7,6 +8,7 @@ export function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <Logo name="name-checker" />
         <div className="flex flex-1 items-center space-x-2 justify-end">
+          <GithubButton />
           <ModeToggleButton />
         </div>
       </div>
