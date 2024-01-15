@@ -14,20 +14,19 @@ import {
   SocialCard,
   SocialPlatformType,
 } from "@/components/common/social-card";
+import { InstagramAPI } from "@/app/api/route";
 
 const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
   INSTAGRAM: {
     name: "Instagram",
     icon: FaInstagram,
+    action: InstagramAPI.fetchData,
   },
   TWITTER: { name: "Twitter", icon: FaTwitter },
   FACEBOOK: { name: "Facebook", icon: FaFacebookF },
   TWITCH: { name: "Twitch", icon: FaTwitch },
   TUMBLR: { name: "Tumblr", icon: FaTumblr },
-  REDDIT: {
-    name: "Reddit",
-    icon: SlSocialReddit,
-  },
+  REDDIT: { name: "Reddit", icon: SlSocialReddit },
   SLACK: { name: "Slack", icon: FaSlack },
   YOUTUBE: { name: "Youtube", icon: FaYoutube },
   DISCORD: { name: "Discord", icon: FaDiscord },
