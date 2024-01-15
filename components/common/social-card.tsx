@@ -1,5 +1,9 @@
 import { IconType } from "react-icons/lib";
-import { SocialStatus } from "@/components/common/social-status";
+import {
+  SocialStatus,
+  SocialStatusLoading,
+} from "@/components/common/social-status";
+import { Suspense } from "react";
 
 export type SocialPlatformType = {
   name: string;
@@ -19,7 +23,9 @@ export function SocialCard({ username, social }: SocialCardProps) {
       <div className="flex flex-col space-y-1">
         <h3 className="font-bold">{social.name}</h3>
         <div>
-          <SocialStatus username={username} action={social.action} />
+          <Suspense key={username} fallback={<SocialStatusLoading />}>
+            <SocialStatus username={username} action={social.action} />
+          </Suspense>
         </div>
       </div>
     </div>
