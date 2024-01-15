@@ -6,34 +6,30 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
 const FormSchema = z.object({
-  username: z.string().min(1, {
-    message: "Username cannot be empty.",
-  }),
+  username: z.string(),
 });
 
 interface SearchInputFormProps {
   placeholder: string;
+  inputValue: string;
 }
 
-export function SearchInputForm({ placeholder }: SearchInputFormProps) {
+export function SearchInputForm({
+  placeholder,
+  inputValue,
+}: SearchInputFormProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      username: "",
+    values: {
+      username: inputValue,
     },
   });
 
@@ -61,7 +57,6 @@ export function SearchInputForm({ placeholder }: SearchInputFormProps) {
               <FormControl>
                 <Input placeholder={placeholder} {...field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
