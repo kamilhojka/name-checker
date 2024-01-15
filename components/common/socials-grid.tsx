@@ -49,3 +49,18 @@ export function SocialsGrid({ query }: { query: string }) {
     </div>
   );
 }
+
+import { Skeleton } from "@/components/ui/skeleton";
+
+export function SocialsGridSkeleton() {
+  return (
+    <div className="w-full flex-1 space-y-6">
+      <Separator />
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+        {Object.entries(SOCIAL_PLATFORMS).map(([platform, social]) => (
+          <Skeleton className="h-20" />
+        ))}
+      </section>
+    </div>
+  );
+}

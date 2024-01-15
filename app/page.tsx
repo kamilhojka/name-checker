@@ -1,6 +1,10 @@
 import { Header } from "@/components/common/header";
 import { SearchInputForm } from "@/components/common/search-input-form";
-import { SocialsGrid } from "@/components/common/socials-grid";
+import {
+  SocialsGrid,
+  SocialsGridSkeleton,
+} from "@/components/common/socials-grid";
+import { Suspense } from "react";
 
 export default function HomePage({
   searchParams,
@@ -16,7 +20,9 @@ export default function HomePage({
       <Header />
       <main className="container flex flex-col flex-1 items-center py-12 space-y-12">
         <SearchInputForm placeholder="Username" inputValue={query} />
-        <SocialsGrid query={query} />
+        <Suspense key={query} fallback={<SocialsGridSkeleton />}>
+          <SocialsGrid query={query} />
+        </Suspense>
       </main>
     </div>
   );
