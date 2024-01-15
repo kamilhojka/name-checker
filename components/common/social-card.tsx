@@ -1,14 +1,16 @@
 import { IconType } from "react-icons/lib";
+import { Suspense } from "react";
+
 import {
   SocialStatus,
   SocialStatusLoading,
 } from "@/components/common/social-status";
-import { Suspense } from "react";
+import { APIResult } from "@/app/api/route";
 
 export type SocialPlatformType = {
   name: string;
   icon: IconType;
-  action?: (args: { username: string }) => Promise<{ available: boolean }>;
+  action?: (args: { username: string }) => Promise<APIResult>;
 };
 
 export interface SocialCardProps {

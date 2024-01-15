@@ -1,13 +1,12 @@
 import { APIResult } from "@/app/api/route";
 import { Badge } from "@/components/ui/badge";
 
-export async function SocialStatus({
-  username,
-  action,
-}: {
+interface SocialStatusProps {
   username: string;
   action?: (args: { username: string }) => Promise<APIResult>;
-}) {
+}
+
+export async function SocialStatus({ username, action }: SocialStatusProps) {
   if (!username) {
     return null;
   }
