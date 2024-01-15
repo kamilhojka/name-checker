@@ -23,3 +23,7 @@ export async function SocialStatus({
 
   return <Badge variant="emerald">Available</Badge>;
 }
+
+export function SocialStatusLoading() {
+  return <Badge variant="outline">Loading...</Badge>;
+}
