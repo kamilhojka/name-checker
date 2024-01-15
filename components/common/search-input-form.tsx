@@ -47,7 +47,7 @@ export function SearchInputForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex w-full max-w-lg space-x-2 min-h-16"
+        className="flex w-full max-w-lg space-x-2 items-center min-h-16"
       >
         <FormField
           control={form.control}
