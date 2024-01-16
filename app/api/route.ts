@@ -150,6 +150,44 @@ export const DiscordAPI = {
         return Promise.resolve({
           status: "error",
           available: false,
+          message: error.response?.data.message,
+        });
+      }
+
+      return Promise.resolve({
+        status: "error",
+        available: false,
+        message: "Generic message error",
+      });
+    }
+  },
+};
+
+export const RedditAPI = {
+  fetchData: async ({ username }: { username: string }): Promise<APIResult> => {
+    try {
+      const response: AxiosResponse = await axios.get(
+        `https://www.reddit.com/api/username_available.json?user=${username}`
+      );
+
+      if (response.data.hasOwnProperty("json")) {
+        return Promise.resolve({
+          status: "error",
+          available: false,
+          message: response.data.json.errors[0][1].toString(),
+        });
+      }
+
+      return Promise.resolve({
+        status: "ok",
+        available: true,
+        message: "",
+      });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return Promise.resolve({
+          status: "error",
+          available: false,
           message: error.message,
         });
       }

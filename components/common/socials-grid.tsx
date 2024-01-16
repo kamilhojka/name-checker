@@ -14,7 +14,12 @@ import {
   SocialPlatformType,
 } from "@/components/common/social-card";
 import { Separator } from "@/components/ui/separator";
-import { DiscordAPI, InstagramAPI, TwitchAPI } from "@/app/api/route";
+import {
+  DiscordAPI,
+  InstagramAPI,
+  RedditAPI,
+  TwitchAPI,
+} from "@/app/api/route";
 
 const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
   INSTAGRAM: {
@@ -26,7 +31,7 @@ const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
   FACEBOOK: { name: "Facebook", icon: FaFacebookF },
   TWITCH: { name: "Twitch", icon: FaTwitch, action: TwitchAPI.fetchData },
   TUMBLR: { name: "Tumblr", icon: FaTumblr },
-  REDDIT: { name: "Reddit", icon: SlSocialReddit },
+  REDDIT: { name: "Reddit", icon: SlSocialReddit, action: RedditAPI.fetchData },
   SLACK: { name: "Slack", icon: FaSlack },
   YOUTUBE: { name: "Youtube", icon: FaYoutube },
   DISCORD: { name: "Discord", icon: FaDiscord, action: DiscordAPI.fetchData },
