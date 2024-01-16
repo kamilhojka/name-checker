@@ -29,7 +29,7 @@ export async function SocialStatus({ username, action }: SocialStatusProps) {
     return <Badge variant="destructive">Not available</Badge>;
   }
 
-  return <Badge variant="emerald">Available</Badge>;
+  return <Badge variant="good">Available</Badge>;
 }
 
 export function SocialStatusLoading() {
