@@ -1,5 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 
+import { isValidGithubUsername } from "@/lib/utils";
+
 export type APIResult = {
   status: "ok" | "error";
   available: boolean;
@@ -204,6 +206,15 @@ export const RedditAPI = {
 export const GithubAPI = {
   fetchData: async ({ username }: { username: string }): Promise<APIResult> => {
     try {
+      if (!isValidGithubUsername(username)) {
+        return Promise.resolve({
+          status: "error",
+          available: false,
+          message:
+            "Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen, and maxiumum is 39 characters.",
+        });
+      }
+
       await axios.get(`https://github.com/${username}`);
 
       return Promise.resolve({
