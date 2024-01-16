@@ -180,7 +180,7 @@ export const RedditAPI = {
 
       return Promise.resolve({
         status: "ok",
-        available: true,
+        available: response.data,
         message: "",
       });
     } catch (error) {
