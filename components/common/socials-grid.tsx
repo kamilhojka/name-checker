@@ -14,7 +14,7 @@ import {
   SocialPlatformType,
 } from "@/components/common/social-card";
 import { Separator } from "@/components/ui/separator";
-import { InstagramAPI, TwitchAPI } from "@/app/api/route";
+import { DiscordAPI, InstagramAPI, TwitchAPI } from "@/app/api/route";
 
 const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
   INSTAGRAM: {
@@ -29,7 +29,7 @@ const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
   REDDIT: { name: "Reddit", icon: SlSocialReddit },
   SLACK: { name: "Slack", icon: FaSlack },
   YOUTUBE: { name: "Youtube", icon: FaYoutube },
-  DISCORD: { name: "Discord", icon: FaDiscord },
+  DISCORD: { name: "Discord", icon: FaDiscord, action: DiscordAPI.fetchData },
 };
 
 export function SocialsGrid({ query }: { query: string }) {

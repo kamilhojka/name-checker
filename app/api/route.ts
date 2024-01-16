@@ -71,7 +71,7 @@ export const TwitchAPI = {
       const body = `[{"operationName":"UsernameValidator_User","variables":{"username":"${username}"},"extensions":{"persistedQuery":{"version":1,"sha256Hash":"fd1085cf8350e309b725cf8ca91cd90cac03909a3edeeedbd0872ac912f3d660"}}}]`;
 
       const response: AxiosResponse = await axios.post(
-        "https://gql.twitch.tv/gql/",
+        "https://gql.twitch.tv/gql",
         body,
         {
           headers: headers,
@@ -83,6 +83,56 @@ export const TwitchAPI = {
       }
 
       if (!response.data[0].data.isUsernameAvailable) {
+        return Promise.resolve({
+          status: "ok",
+          available: false,
+          message: "",
+        });
+      }
+
+      return Promise.resolve({
+        status: "ok",
+        available: true,
+        message: "",
+      });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return Promise.resolve({
+          status: "error",
+          available: false,
+          message: error.message,
+        });
+      }
+
+      return Promise.resolve({
+        status: "error",
+        available: false,
+        message: "Generic message error",
+      });
+    }
+  },
+};
+
+export const DiscordAPI = {
+  fetchData: async ({ username }: { username: string }): Promise<APIResult> => {
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      const body = JSON.stringify({
+        username: username,
+      });
+
+      const response: AxiosResponse = await axios.post(
+        "https://discord.com/api/v9/unique-username/username-attempt-unauthed",
+        body,
+        {
+          headers: headers,
+        }
+      );
+
+      if (response.data.taken) {
         return Promise.resolve({
           status: "ok",
           available: false,
