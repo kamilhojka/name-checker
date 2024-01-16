@@ -11,7 +11,7 @@ import {
   RedditAPI,
   TwitchAPI,
   GithubAPI,
-} from "@/app/api/route";
+} from "@/api/route";
 
 const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
   INSTAGRAM: {

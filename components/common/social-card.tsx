@@ -5,7 +5,7 @@ import {
   SocialStatus,
   SocialStatusLoading,
 } from "@/components/common/social-status";
-import { APIResult } from "@/app/api/route";
+import { APIResult } from "@/api/route";
 
 export type SocialPlatformType = {
   name: string;

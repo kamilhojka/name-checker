@@ -1,4 +1,4 @@
-import { APIResult } from "@/app/api/route";
+import { APIResult } from "@/api/route";
 import { Badge } from "@/components/ui/badge";
 
 interface SocialStatusProps {
