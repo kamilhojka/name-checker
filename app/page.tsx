@@ -1,10 +1,12 @@
+import { Suspense } from "react";
+
+import { Footer } from "@/components/common/footer";
 import { Header } from "@/components/common/header";
 import { SearchInputForm } from "@/components/common/search-input-form";
 import {
   SocialsGrid,
   SocialsGridSkeleton,
 } from "@/components/common/socials-grid";
-import { Suspense } from "react";
 
 export default function HomePage({
   searchParams,
@@ -24,6 +26,7 @@ export default function HomePage({
           <SocialsGrid query={query} />
         </Suspense>
       </main>
+      <Footer />
     </div>
   );
 }
