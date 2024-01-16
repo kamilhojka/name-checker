@@ -1,13 +1,4 @@
-import {
-  FaSlack,
-  FaDiscord,
-  FaYoutube,
-  FaTumblr,
-  FaTwitch,
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaDiscord, FaTwitch, FaInstagram, FaGithub } from "react-icons/fa";
 import { SlSocialReddit } from "react-icons/sl";
 import {
   SocialCard,
@@ -19,6 +10,7 @@ import {
   InstagramAPI,
   RedditAPI,
   TwitchAPI,
+  GithubAPI,
 } from "@/app/api/route";
 
 const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
@@ -27,14 +19,10 @@ const SOCIAL_PLATFORMS: Record<string, SocialPlatformType> = {
     icon: FaInstagram,
     action: InstagramAPI.fetchData,
   },
-  TWITTER: { name: "Twitter", icon: FaTwitter },
-  FACEBOOK: { name: "Facebook", icon: FaFacebookF },
   TWITCH: { name: "Twitch", icon: FaTwitch, action: TwitchAPI.fetchData },
-  TUMBLR: { name: "Tumblr", icon: FaTumblr },
   REDDIT: { name: "Reddit", icon: SlSocialReddit, action: RedditAPI.fetchData },
-  SLACK: { name: "Slack", icon: FaSlack },
-  YOUTUBE: { name: "Youtube", icon: FaYoutube },
   DISCORD: { name: "Discord", icon: FaDiscord, action: DiscordAPI.fetchData },
+  GITHUB: { name: "Github", icon: FaGithub, action: GithubAPI.fetchData },
 };
 
 export function SocialsGrid({ query }: { query: string }) {

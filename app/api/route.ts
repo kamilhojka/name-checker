@@ -200,3 +200,38 @@ export const RedditAPI = {
     }
   },
 };
+
+export const GithubAPI = {
+  fetchData: async ({ username }: { username: string }): Promise<APIResult> => {
+    try {
+      await axios.get(`https://github.com/${username}`);
+
+      return Promise.resolve({
+        status: "ok",
+        available: false,
+        message: "",
+      });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 404) {
+          return Promise.resolve({
+            status: "ok",
+            available: true,
+            message: "",
+          });
+        }
+        return Promise.resolve({
+          status: "error",
+          available: false,
+          message: error.message,
+        });
+      }
+
+      return Promise.resolve({
+        status: "error",
+        available: false,
+        message: "Generic message error",
+      });
+    }
+  },
+};
