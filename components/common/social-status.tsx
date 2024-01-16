@@ -18,7 +18,11 @@ export async function SocialStatus({ username, action }: SocialStatusProps) {
   const result = await action({ username });
 
   if (result.status === "error") {
-    return <Badge variant="destructive">Error</Badge>;
+    return (
+      <Badge variant="destructive" title={result.message ?? undefined}>
+        Error
+      </Badge>
+    );
   }
 
   if (!result.available) {
