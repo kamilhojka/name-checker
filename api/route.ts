@@ -187,6 +187,7 @@ export const RedditAPI = {
       });
     } catch (error) {
       if (error instanceof AxiosError) {
+        console.log(error.response?.data);
         return Promise.resolve({
           status: "error",
           available: false,
