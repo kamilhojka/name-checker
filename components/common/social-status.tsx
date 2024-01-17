@@ -19,8 +19,8 @@ export async function SocialStatus({ username, action }: SocialStatusProps) {
 
   if (result.status === "error") {
     return (
-      <Badge variant="destructive" title={result.message ?? undefined}>
-        Error
+      <Badge variant="secondary" title={result.message ?? undefined}>
+        Service does not respond
       </Badge>
     );
   }
